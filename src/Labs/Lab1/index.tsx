@@ -248,6 +248,10 @@ export default function Lab1() {
                 Please
                 <a href="https://www.lipsum.com" id="wd-lipsum">click here</a>
                 to get dummy text<br/>
+                <h4>Links</h4>
+                Please
+                <a href="https://github.com/dispirito-git/kambaz-react-web-app-cs4550-sp25" id="wd-github">click here</a>
+                for my github at dispirito-git. My name is Joseph DiSpirito<br/>
 
             </form>
         </div>
