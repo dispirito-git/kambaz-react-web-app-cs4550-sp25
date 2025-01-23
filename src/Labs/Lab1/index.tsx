@@ -251,7 +251,7 @@ export default function Lab1() {
                 <h4>Links</h4>
                 Please
                 <a href="https://github.com/dispirito-git/kambaz-react-web-app-cs4550-sp25" id="wd-github">click here</a>
-                for my github at dispirito-git. My name is Joseph DiSpirito<br/>
+                for my github at dispirito-git. My name is Joseph DiSpirito from Section 02 with Dr. Jose<br/>
 
             </form>
         </div>
