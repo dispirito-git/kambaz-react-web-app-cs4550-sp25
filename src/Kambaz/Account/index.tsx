@@ -10,9 +10,6 @@ export default function Account() {
        <table>
         <tr>
           <td valign="top">
-            <AccountNavigation />
-          </td>
-          <td valign="top">
             <Routes>
               <Route path="/"        element={<Navigate to="/Kambaz/Account/Signin" />} />
               <Route path="/Signin"  element={<Signin />} />
