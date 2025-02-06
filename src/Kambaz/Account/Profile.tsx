@@ -19,9 +19,10 @@ export default function Profile() {
           <option value="FACULTY">Faculty</option>
           <option value="STUDENT">Student</option>
         </Form.Control>
-        <Button variant="danger" id="wd-signout-btn" as={Link} to="/Kambaz/Account/Signin" className="w-100">
-          Sign out
-        </Button>
+        <Button variant="danger" id="wd-signout-btn" className="w-100">
+        <Link to="/Kambaz/Account/Signin">Sign out</Link>
+      </Button>
+
       </Form>
     </div>
   );
