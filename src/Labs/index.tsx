@@ -7,7 +7,7 @@ export default function Labs() {
   return (
     <div>
       <h1>Labs</h1>
-      <h3>Name: Joe DiSpirito</h3>
+      <h3>Name: Joseph DiSpirito</h3>
       <h3>Github: https://github.com/dispirito-git/kambaz-react-web-app-cs4550-sp25</h3>
       <TOC />
       <Routes>
