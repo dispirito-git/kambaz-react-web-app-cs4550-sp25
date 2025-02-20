@@ -1,17 +1,23 @@
+import { useParams, useNavigate } from "react-router-dom";
 import { Form, Button, Table } from "react-bootstrap";
+import * as db from "../../Database";
 
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams(); 
+  const assignment = db.assignments.find((a) => a.course === cid && a._id === aid);
+  const navigate = useNavigate();
+
   return (
     <div id="wd-assignments-editor">
       <Form>
         <Form.Group controlId="wd-name">
           <Form.Label><h3>Assignment Name</h3></Form.Label>
-          <Form.Control type="text" defaultValue="A1 - ENV + HTML" />
+          <Form.Control type="text" defaultValue={assignment?.title} />
         </Form.Group>
         <br />
         <Form.Group controlId="wd-description">
           <Form.Label>Description</Form.Label>
-          <Form.Control as="textarea" rows={10} defaultValue="The assignment is available online Submit a link to the landing page of your Web application running on Netlify. The landing page should include the following: Your full name and section Links to each of the lab assignments Link to the Kanbas application Links to all relevant source code repositores The Kanbas application should include a link to navigate back to the landing page." />
+          <Form.Control as="textarea" rows={10} defaultValue={assignment?.description} />
         </Form.Group>
         <br />
         <Table>
@@ -21,7 +27,7 @@ export default function AssignmentEditor() {
                 <Form.Label htmlFor="wd-points">Points</Form.Label>
               </td>
               <td align="left" valign="bottom">
-                <Form.Control type="number" id="wd-points" defaultValue={100} />
+                <Form.Control type="number" id="wd-points" defaultValue={assignment?.points} />
               </td>
             </tr>
             <tr>
@@ -29,9 +35,9 @@ export default function AssignmentEditor() {
                 <Form.Label htmlFor="wd-select-assignment-group">Assignment Group</Form.Label>
               </td>
               <td align="left" valign="top">
-                <Form.Control as="select" id="wd-select-assignment-group">
+                <Form.Control as="select" id="wd-select-assignment-group" defaultValue={assignment?.group}>
                   <option value="ASSIGNMENTS">ASSIGNMENTS</option>
-                  <option value="ASSIGNMENTS">OTHER</option>
+                  <option value="OTHER">OTHER</option>
                 </Form.Control>
               </td>
             </tr>
@@ -40,9 +46,9 @@ export default function AssignmentEditor() {
                 <Form.Label htmlFor="wd-select-grade-display">Display Grade as</Form.Label>
               </td>
               <td align="left" valign="top">
-                <Form.Control as="select" id="wd-select-grade-display">
+                <Form.Control as="select" id="wd-select-grade-display" defaultValue={assignment?.gradeDisplay}>
                   <option value="Percentage">Percentage</option>
-                  <option value="Percentage">Letter</option>
+                  <option value="Letter">Letter</option>
                 </Form.Control>
               </td>
             </tr>
@@ -51,7 +57,7 @@ export default function AssignmentEditor() {
                 <Form.Label htmlFor="wd-select-submission-type">Submission Type</Form.Label>
               </td>
               <td align="left" valign="top">
-                <Form.Control as="select" id="wd-select-submission-type">
+                <Form.Control as="select" id="wd-select-submission-type" defaultValue={assignment?.submissionType}>
                   <option value="Online">Online</option>
                 </Form.Control>
               </td>
@@ -73,42 +79,42 @@ export default function AssignmentEditor() {
               </td>
               <td align="left" valign="top">
                 <Form.Label>Assign to</Form.Label>
-                <Form.Control type="text" id="wd-assign-to" defaultValue="Everyone" />
+                <Form.Control type="text" id="wd-assign-to" defaultValue=""/>
               </td>
             </tr>
             <tr>
               <td></td>
               <td align="left" valign="top">
                 <Form.Label>Due</Form.Label>
-                <Form.Control type="date" id="wd-text-assign-date" defaultValue="2024-05-13" />
+                <Form.Control type="date" id="wd-text-assign-date" defaultValue={assignment?.due} />
               </td>
             </tr>
             <tr>
               <td></td>
               <td align="left" valign="top">
                 <Form.Label>Available from</Form.Label>
-                <Form.Control type="date" id="wd-text-available-from-date" defaultValue="2024-05-06" />
+                <Form.Control type="date" id="wd-text-available-from-date" defaultValue={assignment?.available} />
               </td>
               <td align="left" valign="top">
                 <Form.Label>Until</Form.Label>
-                <Form.Control type="date" id="wd-text-available-until-date" defaultValue="2024-05-20" />
+                <Form.Control type="date" id="wd-text-available-until-date" defaultValue={assignment?.due} />
               </td>
             </tr>
             <tr>
               <td colSpan={4}>
                 <hr />
               </td>
-            </tr>
+            </tr> 
             <tr>
               <td></td>
               <td></td>
               <td align="right" valign="top">
-                <Button variant="secondary" id="wd-cancel" onClick={() => alert("Cancel!")}>
+                <Button variant="secondary" id="wd-cancel" onClick={() => navigate(`/Kambaz/Courses/${cid}/Assignments`)}>
                   Cancel
                 </Button>
               </td>
               <td align="left" valign="top">
-                <Button variant="primary" id="wd-save" onClick={() => alert("Save!")}>
+                <Button variant="primary" id="wd-save" onClick={() => navigate(`/Kambaz/Courses/${cid}/Assignments`)}>
                   Save
                 </Button>
               </td>
