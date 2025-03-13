@@ -1,4 +1,5 @@
 [
+    { "_id": "NEW", "title": "New Assignment", "course": "", "available": "2024-05-13", "points": 100, "due": "", "description": "New Description", "group": "", "gradeDisplay": "", "submissionType": "" },
     { "_id": "A101", "title": "Propulsion Assignment", "course": "RS101", "available": "2024-05-13", "points": 100, "due": "2024-05-20", "description": "", "group": "ASSIGNMENTS", "gradeDisplay": "Percentage", "submissionType": "Online" },
     { "_id": "A102", "title": "Combustion Analysis", "course": "RS101", "available": "2024-05-13", "points": 100, "due": "2024-05-20", "description": "", "group": "ASSIGNMENTS", "gradeDisplay": "Percentage", "submissionType": "Online" },
     { "_id": "A103", "title": "Nozzle Design Project", "course": "RS101", "available": "2024-05-13", "points": 100, "due": "2024-05-20", "description": "", "group": "ASSIGNMENTS", "gradeDisplay": "Percentage", "submissionType": "Online" },

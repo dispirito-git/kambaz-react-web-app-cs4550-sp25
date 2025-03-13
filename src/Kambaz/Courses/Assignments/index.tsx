@@ -1,10 +1,10 @@
 import { ListGroup, Button, InputGroup, FormControl } from "react-bootstrap";
 import { FaPen, FaSearch } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
-import ModuleControlButtons from "../Modules/ModuleControlButtons";
 import LessonControlButtons from "../Modules/LessonControlButtons";
 import { useParams } from "react-router";
 import * as db from "../../Database";
+import { Link } from "react-router";
 
 export default function Assignments() {
   const { cid } = useParams(); // Get course ID from URL
@@ -24,9 +24,11 @@ export default function Assignments() {
         <Button variant="secondary" id="wd-add-assignment-group" className="me-2">
           + Group
         </Button>
-        <Button variant="danger" id="wd-add-assignment">
-          + Assignment
-        </Button>
+        <Link to={`/Kambaz/Courses/${cid}/Assignments/NEW`}>
+          <Button variant="danger" id="wd-add-assignment">
+            + Assignment
+          </Button>
+        </Link>
       </div>
       <ListGroup className="rounded-0" id="wd-assignments">
         <ListGroup.Item className="wd-module p-0 mb-7 fs-5 border-gray">
@@ -35,12 +37,12 @@ export default function Assignments() {
               <BsGripVertical className="me-2 fs-3" /> ASSIGNMENTS
             </div>
             <div>
-              <ModuleControlButtons />
+            
             </div>
           </div>
         </ListGroup.Item>
         {assignments.map((assignment) => (
-          <ListGroup.Item action href={`#/Kambaz/Courses/${assignment.course}/Assignments/${assignment._id}`} className="d-flex justify-content-between align-items-center">
+          <ListGroup.Item action as={Link} to={`/Kambaz/Courses/${assignment.course}/Assignments/${assignment._id}`} className="d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center">
               <BsGripVertical className="me-2 fs-3" />
               <FaPen className="text-success me-2" />
