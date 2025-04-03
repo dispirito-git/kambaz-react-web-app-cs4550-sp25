@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import * as db from "./Database";
 import { Link } from "react-router";
 
 export default function Dashboard({
@@ -11,7 +10,7 @@ export default function Dashboard({
   {
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = db;
+
   return (
     <div className="p-4" id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
@@ -31,12 +30,7 @@ export default function Dashboard({
       <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
       <div className="row" id="wd-dashboard-courses">
         <div className="row row-cols-1 row-cols-md-5 g-4">
-        {courses.filter((course) =>
-          enrollments.some(
-            (enrollment) =>
-              enrollment.user === currentUser._id &&
-              enrollment.course === course._id
-            )).map((course) => (
+        {courses.map((course) => (
           <div key={course._id} className="col" style={{ width: "300px" }}>
           <div className="card">
           <Link to={`/Kambaz/Courses/${course._id}`} className="btn btn-primary">

@@ -1,14 +1,34 @@
 import { ListGroup, Button, InputGroup, FormControl } from "react-bootstrap";
 import { FaPen, FaSearch } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
-import LessonControlButtons from "../Modules/LessonControlButtons";
 import { useParams } from "react-router";
-import * as db from "../../Database";
 import { Link } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setAssignments, deleteAssignment } from "./reducer";
+import * as coursesClient from "../client";
+import * as assignmentsClient from "./client";
+import AssignmentControlButtons from "./AssignmentControlButtons";
+import {v4 as uuidv4} from 'uuid';
 
 export default function Assignments() {
   const { cid } = useParams(); // Get course ID from URL
-  const assignments = db.assignments.filter((assignment) => assignment.course === cid); // Get assignments for this course
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const dispatch = useDispatch();
+  
+  const handleDeleteAssignment = async (assignmentId: string) => {
+      await assignmentsClient.deleteAssignment(assignmentId);
+      dispatch(deleteAssignment(assignmentId));
+  };
+
+  const fetchAssignments = async () => {
+    const assignments = await coursesClient.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+
   return (
     <div id="wd-assignments">
       <div className="d-flex p-4 justify-content-end mb-3">
@@ -24,7 +44,7 @@ export default function Assignments() {
         <Button variant="secondary" id="wd-add-assignment-group" className="me-2">
           + Group
         </Button>
-        <Link to={`/Kambaz/Courses/${cid}/Assignments/NEW`}>
+        <Link to={`/Kambaz/Courses/${cid}/Assignments/NEW`} className="text-decoration-none">
           <Button variant="danger" id="wd-add-assignment">
             + Assignment
           </Button>
@@ -41,8 +61,9 @@ export default function Assignments() {
             </div>
           </div>
         </ListGroup.Item>
-        {assignments.map((assignment) => (
-          <ListGroup.Item action as={Link} to={`/Kambaz/Courses/${assignment.course}/Assignments/${assignment._id}`} className="d-flex justify-content-between align-items-center">
+        {assignments.map((assignment : any) => (
+          <ListGroup.Item  className="d-flex justify-content-between align-items-center">
+            <Link to={`/Kambaz/Courses/${assignment.course}/Assignments/${assignment._id}`} className="text-decoration-none text-dark">
             <div className="d-flex align-items-center">
               <BsGripVertical className="me-2 fs-3" />
               <FaPen className="text-success me-2" />
@@ -54,9 +75,10 @@ export default function Assignments() {
                 </div>
               </div>
             </div>
+            </Link>
             <div>
-              <LessonControlButtons />
             </div>
+            <AssignmentControlButtons assignmentId={assignment._id} deleteAssignment={() => handleDeleteAssignment(assignment._id)}/>
           </ListGroup.Item>
         ))}
       </ListGroup>
