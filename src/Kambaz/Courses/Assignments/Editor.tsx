@@ -1,10 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Form, Button, Table } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as assignmentsClient from "./client";
 import { updateAssignment } from "./reducer";
-import {v4 as uuidv4} from "uuid";
 import * as coursesClient from "../client";
 import { addAssignment } from "./reducer";
 
