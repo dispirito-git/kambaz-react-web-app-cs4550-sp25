@@ -9,7 +9,6 @@ import { setAssignments, deleteAssignment } from "./reducer";
 import * as coursesClient from "../client";
 import * as assignmentsClient from "./client";
 import AssignmentControlButtons from "./AssignmentControlButtons";
-import {v4 as uuidv4} from 'uuid';
 
 export default function Assignments() {
   const { cid } = useParams(); // Get course ID from URL
