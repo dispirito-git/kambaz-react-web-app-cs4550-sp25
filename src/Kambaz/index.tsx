@@ -20,8 +20,6 @@ import { setEnrollments } from "./Courses/Enrollments/reducer";
 export default function Kambaz() {
   const { courses } = useSelector((state: any) => state.coursesReducer);
   const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
-
-  const [allCourses, setAllCourses] = useState<any[]>(db.courses);
   const [course, setCourse] = useState<any>({
     _id: "1234", name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
@@ -51,19 +49,6 @@ export default function Kambaz() {
     await courseClient.unenrollUserFromCourse(currentUser, course);
     dispatch(setEnrollments(enrollments.filter((enrollment:any) => enrollment._id !== enrollment._id)));
   };
-
-
-  // const fetchCourses = async () => {
-  //   try {
-  //     const courses = await userClient.findMyCourses();
-  //     dispatch(setCourses(courses));
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchCourses();
-  // }, [currentUser]);
 
   const fetchAllUserCourses = async () => {
     try {

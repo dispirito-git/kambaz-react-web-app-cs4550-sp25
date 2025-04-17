@@ -10,6 +10,7 @@ export default function Users() {
  const [users, setUsers] = useState<any[]>([]);
  const [role, setRole] = useState("");
  const [name, setName] = useState("");
+
  const createUser = async () => {
     const user = await client.createUser({
       firstName: "New",
@@ -67,5 +68,6 @@ export default function Users() {
         <option value="ADMIN">Administrators</option>
       </select>
      <PeopleTable users={users} />
+     <span style={{ display: "none" }}>{name}</span>
    </div>
 );}
