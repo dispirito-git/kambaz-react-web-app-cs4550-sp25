@@ -4,7 +4,6 @@ import Dashboard from "./Dashboard";
 import Courses from "./Courses";
 import KambazNavigation from "./Navigation";
 import "./styles.css";
-import * as db from "./Database";
 import { useState } from "react";
 import ProtectedRoute from "./Account/ProtectedRoute";
 import Session from "./Account/Session";
